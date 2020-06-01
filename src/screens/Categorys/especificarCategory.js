@@ -8,41 +8,42 @@ import {
   Dimensions,
 } from 'react-native';
 
-export default function Category() {
+export default function EspecificarCategory({ navigation }) {
   const data = [
     {
       id: 1,
-      category: 'Viagem',
+      category: 'Festa de aniversário',
     },
     {
       id: 2,
-      category: 'Festa',
+      category: 'Festa de casamento',
     },
     {
       id: 3,
-      category: 'Imóvel',
+      category: 'Debutante (15 anos)',
     },
     {
       id: 4,
-      category: 'Automóvel',
+      category: 'Festa de Formatura',
     },
     {
       id: 5,
-      category: 'Pagar dívidas',
+      category: 'Festa religiosa',
     },
     {
       id: 6,
-      category: 'Empreender',
+      category: 'Outra',
     },
   ];
 
   return (
     <View style={styles.container}>
+    <View style={styles.progresso} />
       <StatusBar backgroundColor="#000" barStyle="light-content" />
       <View style={{ marginVertical: 60 }}>
-        <Text style={styles.mainText}>Agora precisamos entender seu sonho</Text>
+      <Text style={styles.mainText}>Legal! Adoramos Festas.</Text>
         <Text style={styles.subHeader}>
-          Em qual categoria ele se encaixa melhor?
+          Qual das festas abaixo é a sua?
         </Text>
       </View>
       <ScrollView
@@ -50,7 +51,7 @@ export default function Category() {
         showsVerticalScrollIndicator={false}
       >
         {data.map((category) => (
-          <View key={category.id} style={styles.listItem}>
+          <View key={category.id} style={styles.listItem} onTouchEnd={() => navigation.navigate('Metas')} style={styles.listItem}>
             <Text style={styles.subHeader}>{category.category}</Text>
           </View>
         ))}
@@ -78,6 +79,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 25,
     color: '#000',
+    marginVertical: 10,
   },
 
   listItem: {
@@ -89,5 +91,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 10,
+  },
+
+  progresso: {
+    width: Dimensions.get('window').width,
+    height: 7,
+    backgroundColor: '#FAA831',
   },
 });
